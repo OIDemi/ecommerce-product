@@ -1,19 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { data } from "../utils/data";
 import ImgThumbnail from "./ImgThumbnail";
 import Cart from "../images/icon-cart.svg";
 import { ReactComponent as Minus } from "../images/icon-minus.svg";
 import { ReactComponent as Plus } from "../images/icon-plus.svg";
+
 const Main = () => {
+  const [imgIndex, setIndex] = useState(0);
+
+  function handleImgClick(newIndex) {
+    if (imgIndex !== newIndex) setIndex(newIndex);
+  }
+  const imgGallery = data[imgIndex];
+  console.log(imgGallery);
+
   return (
     <main>
       <section className='img-section'>
         <div className='img-mobile'>
-          <img src={data[0].fullImg} alt='Shoe' />
+          <img src={imgGallery.fullImg} alt='Shoe' />
         </div>
         <div className='thumbnail-container'>
-          {data.map((image) => (
-            <ImgThumbnail {...image} key={image.id} />
+          {data.map((image, index) => (
+            <ImgThumbnail
+              image={image}
+              key={image.id}
+              index={index}
+              onImgHandle={handleImgClick}
+              imgIndex={imgIndex}
+            />
           ))}
         </div>
       </section>

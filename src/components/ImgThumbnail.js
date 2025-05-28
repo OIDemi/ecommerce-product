@@ -1,9 +1,15 @@
 import React, { Fragment } from "react";
 
-export default function ImgThumbnail({ thumbnailImg }) {
+export default function ImgThumbnail({ image, index, onImgHandle, imgIndex }) {
+  const { thumbnailImg } = image;
   return (
     <>
-      <img src={thumbnailImg} alt='img-thumbnail' />
+      <img
+        className={`${imgIndex === index ? "thumbnail-img-border" : ""}`}
+        src={thumbnailImg}
+        alt='img-thumbnail'
+        onClick={() => onImgHandle(index)}
+      />
     </>
   );
 }
