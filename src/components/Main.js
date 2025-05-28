@@ -23,14 +23,17 @@ const Main = () => {
   }
 
   function handleImgScrollNext() {
-    if (imgIndex < data.length - 1) setIndex((count) => count + 1);
+    if (imgIndex < data.length - 1) {
+      setIndex((count) => count + 1);
+    } else setIndex(0);
   }
 
   function handleImgScrollPrevious() {
-    if (imgIndex > 0) setIndex((count) => count - 1);
+    if (imgIndex > 0) {
+      setIndex((count) => count - 1);
+    } else setIndex(data.length - 1);
   }
   const imgGallery = data[imgIndex];
-  console.log(imgGallery);
 
   return (
     <main>
