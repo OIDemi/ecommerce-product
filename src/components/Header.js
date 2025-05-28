@@ -7,7 +7,6 @@ import { Button, Drawer, Space } from "antd";
 import Menu from "../images/icon-menu.svg";
 const Header = () => {
   const [open, setOpen] = useState(false);
-  const [placement, setPlacement] = useState("left");
   const showDrawer = () => {
     setOpen(true);
   };
@@ -28,11 +27,11 @@ const Header = () => {
           </Button>
         </Space>
         <Drawer
-          placement={placement}
+          placement='left'
           closable={true}
           onClose={onClose}
           open={open}
-          key={placement}
+          key='left'
           className='mobile-menu-nav'
         >
           <nav>

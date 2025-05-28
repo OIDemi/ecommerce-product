@@ -54,6 +54,25 @@ header nav {
   align-items: center;
   gap: 1rem;
 }
+
+header nav ul li a {
+  position: relative;
+}
+header nav ul li a::after {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: -2.6rem;
+  width: 100%;
+  background-color: var(--primary-orange);
+  height: 5px;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+header nav ul li a:hover::after {
+  opacity: 1;
+}
 .mobile-nav-btn {
   background-color: var(--neutral-white);
   border: none;
