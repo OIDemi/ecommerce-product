@@ -4,12 +4,30 @@ import ImgThumbnail from "./ImgThumbnail";
 import Cart from "../images/icon-cart.svg";
 import { ReactComponent as Minus } from "../images/icon-minus.svg";
 import { ReactComponent as Plus } from "../images/icon-plus.svg";
+import { ReactComponent as Previous } from "../images/icon-previous.svg";
+import { ReactComponent as Next } from "../images/icon-next.svg";
 
 const Main = () => {
   const [imgIndex, setIndex] = useState(0);
+  const [add, setAdd] = useState(1);
 
   function handleImgClick(newIndex) {
     if (imgIndex !== newIndex) setIndex(newIndex);
+  }
+  function addQuantity() {
+    setAdd((count) => count + 1);
+  }
+
+  function reduceQuantity() {
+    if (add > 1) setAdd((count) => count - 1);
+  }
+
+  function handleImgScrollNext() {
+    if (imgIndex < data.length - 1) setIndex((count) => count + 1);
+  }
+
+  function handleImgScrollPrevious() {
+    if (imgIndex > 0) setIndex((count) => count - 1);
   }
   const imgGallery = data[imgIndex];
   console.log(imgGallery);
@@ -18,7 +36,13 @@ const Main = () => {
     <main>
       <section className='img-section'>
         <div className='img-mobile'>
+          <div className='previous' onClick={handleImgScrollPrevious}>
+            <Previous />
+          </div>
           <img src={imgGallery.fullImg} alt='Shoe' />
+          <div className='next' onClick={handleImgScrollNext}>
+            <Next />
+          </div>
         </div>
         <div className='thumbnail-container'>
           {data.map((image, index) => (
@@ -47,11 +71,11 @@ const Main = () => {
           <p>$250.00</p>
         </div>
         <div className='btn-container'>
-          <button>
-            <Minus className='minus' />
-            0
-            <Plus className='plus' />
-          </button>
+          <span>
+            <Minus className='minus' onClick={reduceQuantity} />
+            {add}
+            <Plus className='plus' onClick={addQuantity} />
+          </span>
           <button>
             <img src={Cart} alt='Cart' />
             Add to Cart
