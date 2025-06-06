@@ -11,7 +11,11 @@ const Footer = () => {
       >
         Frontend Mentor
       </a>
-      . Coded by <a href='/'>Your Name Here</a>.
+      . Coded by{" "}
+      <a href='/' target='_blank'>
+        Olujobi Ifeoluwa
+      </a>
+      .
     </footer>
   );
 };

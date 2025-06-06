@@ -12,7 +12,7 @@
   --neutral-grayish-blue: hsl(220, 14%, 75%);
   --neutral-light-grayish-blue: hsl(223, 64%, 98%);
   --neutral-white: hsl(0, 0%, 100%);
-  --neutral-lightbox-black: hsl(0, 0%, 0%);
+  --neutral-lightbox-black: hsla(0, 0%, 0%, 0.75);
   --font-weight-400: 400;
   --font-weight-700: 700;
 }
@@ -33,6 +33,7 @@ body {
   color: var(--neutral-dark-grayish-blue);
   font-weight: var(--font-weight-400);
   line-height: 1.5;
+  position: relative;
 }
 
 #root {
@@ -67,7 +68,7 @@ header nav ul li a::after {
   background-color: var(--primary-orange);
   height: 5px;
   opacity: 0;
-  transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.1s ease-in-out;
 }
 
 header nav ul li a:hover::after {
@@ -239,7 +240,6 @@ main {
   left: 14px;
 }
 .next {
-  right: 0;
   bottom: 50%;
   transform: translateY(50%);
   right: 14px;
@@ -249,6 +249,72 @@ main {
   filter: grayscale(0.6);
 }
 
+.thumbnail-img-hover:hover {
+  border: 3px solid var(--primary-orange);
+  filter: grayscale(0.6);
+}
+/*LIGHTBOX GALLERY*/
+.lightbox-gallery-overlay {
+  position: fixed;
+  inset: 0;
+  height: 100vh;
+  background-color: var(--neutral-lightbox-black);
+}
+.lightbox-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  img {
+    border-radius: 14px;
+  }
+}
+.lightbox-gallery .close-gallery-btn {
+  align-self: flex-end;
+  cursor: pointer;
+}
+.lightbox-gallery .main-img-container {
+  position: relative;
+}
+.lightbox-gallery .main-img {
+  cursor: default;
+}
+:is(
+    .lightbox-gallery .gallery-modal-previous-btn,
+    .lightbox-gallery .gallery-modal-next-btn
+  ) {
+  position: absolute;
+  background-color: var(--neutral-white);
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.lightbox-gallery .gallery-modal-previous-btn {
+  top: 50%;
+  transform: translateY(-40%);
+  left: -14px;
+}
+.lightbox-gallery .gallery-modal-next-btn {
+  bottom: 50%;
+  transform: translateY(60%);
+  right: -14px;
+}
+.lightbox-gallery .thumbnail-modal-img {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  img {
+    width: 100px;
+  }
+}
 /*FOOTER SECTION*/
 footer {
   margin-top: 2rem;
