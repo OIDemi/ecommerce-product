@@ -5,7 +5,9 @@ export default function ImgThumbnail({ image, index, onImgHandle, imgIndex }) {
   return (
     <>
       <img
-        className={`${imgIndex === index ? "thumbnail-img-border" : ""}`}
+        className={`thumbnail-img-hover ${
+          imgIndex === index ? "thumbnail-img-border" : ""
+        }`}
         src={thumbnailImg}
         alt='img-thumbnail'
         onClick={() => onImgHandle(index)}

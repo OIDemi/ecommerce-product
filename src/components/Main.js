@@ -7,9 +7,12 @@ import { ReactComponent as Plus } from "../images/icon-plus.svg";
 import { ReactComponent as Previous } from "../images/icon-previous.svg";
 import { ReactComponent as Next } from "../images/icon-next.svg";
 
+import GalleryModal from "./GalleryModal";
+
 const Main = () => {
   const [imgIndex, setIndex] = useState(0);
   const [add, setAdd] = useState(1);
+  const [openGallery, setOpenGallery] = useState(false);
 
   function handleImgClick(newIndex) {
     if (imgIndex !== newIndex) setIndex(newIndex);
@@ -42,7 +45,11 @@ const Main = () => {
           <div className='previous' onClick={handleImgScrollPrevious}>
             <Previous />
           </div>
-          <img src={imgGallery.fullImg} alt='Shoe' />
+          <img
+            src={imgGallery.fullImg}
+            alt='Shoe'
+            onClick={() => setOpenGallery(true)}
+          />
           <div className='next' onClick={handleImgScrollNext}>
             <Next />
           </div>
@@ -85,6 +92,17 @@ const Main = () => {
           </button>
         </div>
       </section>
+      {openGallery && (
+        <GalleryModal
+          imgGallery={imgGallery}
+          onImgHandle={handleImgClick}
+          imgIndex={imgIndex}
+          data={data}
+          setOpenGallery={setOpenGallery}
+          onHandleImgScrollPrevious={handleImgScrollPrevious}
+          onHandleImgScrollNext={handleImgScrollNext}
+        />
+      )}
     </main>
   );
 };
